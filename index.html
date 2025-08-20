@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Validación de estudiantes</title>
 </head>
 <body>
-    <h2>Cantidad de Materias</h2>
-
+    <h2>Cantidad de estudiantes por materia</h2>
+    
     <label for="materia1">Materia 1:</label>
     <input type="number" id="materia1" min="0" max="100"><br><br>
     
@@ -18,7 +17,35 @@
     
     <p id="resultado"></p>
 
+    <script>
+        function validar() {
+            let m1 = parseInt(document.getElementById("materia1").value);
+            let m2 = parseInt(document.getElementById("materia2").value);
+            let resultado = document.getElementById("resultado");
 
+           
+            if (isNaN(m1) || isNaN(m2)) {
+                resultado.innerText = "Debe ingresar valores en ambas materias.";
+                return;
+            }
+            if (m1 < 0 || m2 < 0) {
+                resultado.innerText = "No se permiten valores negativos.";
+                return;
+            }
+            if (m1 > 100 || m2 > 100) {
+                resultado.innerText = "El máximo permitido es 100.";
+                return;
+            }
 
+            
+            if (m1 > m2) {
+                resultado.innerText = "La Materia 1 tiene más estudiantes.";
+            } else if (m2 > m1) {
+                resultado.innerText = "La Materia 2 tiene más estudiantes.";
+            } else {
+                resultado.innerText = "Ambas materias tienen la misma cantidad de estudiantes.";
+            }
+        }
+    </script>
 </body>
 </html>
